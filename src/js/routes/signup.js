@@ -30,14 +30,15 @@ function signup(ctx, next) {
   }
 
   function onUserCreated(user) {
-    // const usersRef = firebase.database().ref(`users/${user.uid}`);
-    // const userData = pick(user, ['uid', 'email', 'displayName', 'photoURL']);
-    // usersRef.set(userData)
-    //   .then(() => {
-    //     user.sendEmailVerification();
-    //     page('/profile');
-    //   });
-    console.log('Success');
+    const usersRef = firebase.database().ref(`users/${user.uid}`);
+    const userData = pick(user, ['uid', 'email', 'displayName', 'photoURL']);
+    usersRef.set(userData)
+      .then(() => {
+        user.sendEmailVerification();
+        page.redirect('/profile');
+      });
+
+    page.redirect('/profile');
   }
 
   function onUserCreationError(error) {

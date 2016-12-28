@@ -37,6 +37,8 @@
   page('/login', login);
   page('/logout', logout);
   page('/signup', signup);
+  page('/profile', profile);
+  page('/profile/edit', profileEdit);
   page('*', render404);
 
   render('preloader');
