@@ -26,6 +26,7 @@
       display block
       width 100%
       height auto
+      border-radius 8px
 
     .fa
       color white
@@ -76,10 +77,12 @@
     margin 8px 0
     display none
 
+  &__borders,
   &__presets
     position relative
     display none
     margin-top 24px
+    padding-bottom 16px
     white-space nowrap
     font-size 0
     margin 24px 0 0
@@ -192,6 +195,7 @@
     {$this}__canvas-container,
     {$this}__caption,
     {$this}__presets,
+    {$this}__borders,
     {$this}__reset,
     {$this}__upload
       display block
@@ -206,6 +210,7 @@
   &.is-uploading
     {$this}__controls,
     {$this}__presets,
+    {$this}__borders,
     {$this}__caption
       display none
 

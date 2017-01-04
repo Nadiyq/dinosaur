@@ -4,6 +4,7 @@ class Editor {
     this.props            = Object.assign({}, Editor.defaults, props);
     this.canvasContainer  = qs(this.props.canvasContainer, this.root);
     this.filtersContainer = qs(this.props.filtersContainer, this.root);
+    this.bordersContainer = qs(this.props.bordersContainer, this.root);
     this.fileInput        = qs(this.props.fileInput, this.root);
     this.triggerReset     = qs(this.props.triggerReset, this.root);
     this.triggerUpload    = qs(this.props.triggerUpload, this.root);
@@ -17,6 +18,7 @@ class Editor {
     this.save              = this.save.bind(this);
     this._onFileChange     = this._onFileChange.bind(this);
     this._onFilterClick    = this._onFilterClick.bind(this);
+    this._onBorderClick    = this._onBorderClick.bind(this);
     this._onUploadProgress = this._onUploadProgress.bind(this);
 
     this.triggerReset.style.display = 'none';
@@ -48,7 +50,7 @@ class Editor {
   }
 
   resetFilter() {
-    if (!this.filter) return;
+    // if (!this.filter) return;
     this.filter = null;
     this.caman && this.caman.revert();
     this._highlightActiveFilter();
@@ -105,15 +107,31 @@ class Editor {
 
   _bindEvents() {
     this.fileInput.addEventListener('change', this._onFileChange);
+    this.bordersContainer.addEventListener('click', this._onBorderClick);
   }
 
   _onFileChange(e) {
     this.file = this.fileInput.files[0];
     this._initEditor();
   }
-  _onFilterClick(){
 
+  _onFilterClick(){
   }
+
+  _onBorderClick(e){
+    if(this.borderImagePath && this.borderImagePath != e.target.dataset.imagepath){
+      this.resetFilter();
+    }
+    this.borderImagePath = e.target.dataset.imagepath;
+    const canvasBorder = this.root.getElementsByTagName('canvas')[0];
+    const canvasContext = canvasBorder.getContext('2d');
+    const borderImage = new Image();
+    borderImage.src = e.target.dataset.imagepath;
+    borderImage.onload = function(){
+      canvasContext.drawImage(borderImage, 0,0, canvasBorder.width, canvasBorder.height);
+    }
+  }
+
   _onFilterChange() {
     // TODO
   }
@@ -177,6 +195,7 @@ Editor.defaults = {
   uploadingClass: 'is-uploading',
   filtersContainer: '.editor__presets',
   canvasContainer: '.editor__canvas-container',
+  bordersContainer: '.editor__borders',
   triggerReset: '.editor__reset',
   triggerUpload: '.editor__upload',
   fileInput: 'input[type="file"]',
@@ -206,4 +225,9 @@ Editor.FILTERS = [
   'nostalgia',
   'hemingway',
   'concentrate'
+];
+
+Editor.BORDERS = [
+  'vintage',
+  'modern',
 ];

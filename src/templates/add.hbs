@@ -2,6 +2,21 @@
 <div class="container-fluid">
 
   <div id="editor" class="editor">
+
+    <div class="editor__borders">
+      <div class="editor__borders-track">
+        {{#each borders}}
+        <button
+          class="editor__borders-item"
+          data-filter="{{ this }}"
+          data-imagePath = 'img/borders/{{ this }}.png'
+          style="background-image:url('img/borders/{{ this }}.png')">
+          <span>{{ decamelize this }}</span>
+        </button>
+        {{/each}}
+      </div>
+    </div>
+
     <div class="editor__canvas-container">
       <i class="fa fa-spinner fa-4x fa-spin"></i>
     </div>
