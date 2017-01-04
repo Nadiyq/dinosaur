@@ -5,7 +5,7 @@ function profileEdit(ctx) {
 
     const formElement = document.forms['public-info'];
     const NAME_VALIDATOR_RE  = /^\w+\s*\w*$/;
-    const PHONE_VALIDATOR_RE = /^\+?\d{10,14}$/;
+    const PHONE_VALIDATOR_RE = /\+\d{2} \(\d{3}\) \d{3}-\d{2}-\d{2}/;
 
 
     window.form = new VForm(formElement, {
@@ -25,7 +25,7 @@ function profileEdit(ctx) {
                 validate: 'email'
             },
             'displayName': {
-                // validate: 'required',
+                validate: 'required',
                 customValidator(value) {
                     return NAME_VALIDATOR_RE.test(value)
                         || 'Field can contain only letters, numbers, or underscore sign';
@@ -34,7 +34,7 @@ function profileEdit(ctx) {
             'phoneNumber': {
                 customValidator(value) {
                     return PHONE_VALIDATOR_RE.test(value)
-                        || 'Phone must contain from 10 to 14 digits';
+                        || 'Phone must contain from 10 to 12 digits';
                 }
             },
             'about': {

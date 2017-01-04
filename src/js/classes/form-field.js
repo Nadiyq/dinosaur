@@ -62,9 +62,11 @@ const FormField = (function() {
       this._bindEvents();
       // console.log(this);
     }
+
     isValid() {
       return this._isValid;
     }
+
     validate() {
       const value = this.control.value;
       this.resetState();
@@ -138,7 +140,7 @@ const FormField = (function() {
         });
       }
 
-      if (typeof customValidator === 'function' && customValidator !== noop) {
+      if (typeof customValidator === 'function') {
         this.rules.push({
           name: 'custom',
           fn: customValidator
@@ -158,7 +160,6 @@ const FormField = (function() {
        * @return {Boolean|Array} true if valid or array of error messages
        */
       this._validate = (value) => {
-        console.log(this.rules);
         const errors = this.rules.reduce((acc, { name, fn, params = [] }) => {
           const res = fn(value, ...params);
           // if valid
@@ -168,7 +169,6 @@ const FormField = (function() {
             errorMessages[name] && errorMessages[name].replace('{n}', params[0]) || res
           );
         }, []);
-        console.log(errors);
         return errors.length ? errors : true;
       };
     }
@@ -207,7 +207,7 @@ const FormField = (function() {
     validClass: 'has-success',
     errorElementClass: 'text-danger',
     control: 'input',
-    customValidator: noop,
+    customValidator: null,
     errorMessages: {},
     validate: null
   };

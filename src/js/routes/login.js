@@ -1,5 +1,3 @@
-// login.js
-
 function login(ctx) {
   if (ctx.user) {
     return page.redirect('/profile');
@@ -12,10 +10,8 @@ function login(ctx) {
 
   const emailFF = new FormField(email.parentNode, {
     validate: [
-        'required',
-        'email',
-        'minLength[6]',
-        'maxLength[16]'
+      'required',
+      'email'
     ],
     resetOnFocus: true,
     validateOnBlur: true,
@@ -23,9 +19,7 @@ function login(ctx) {
   });
   const passwordFF = new FormField(password.parentNode, {
     validate: [
-      'required',
-      'minLength[6]',
-      'maxLength[20]'
+      'required'
     ],
     resetOnFocus: true,
     validateOnBlur: true,
@@ -44,10 +38,9 @@ function login(ctx) {
 
     if (emailFF.isValid() && passwordFF.isValid()) {
       auth
-          .signInWithEmailAndPassword(email.value, password.value)
-          .then((success) => page.redirect('/profile'))
-          .catch((error) => console.log(error));
+        .signInWithEmailAndPassword(email.value, password.value)
+        .then((success) => page.redirect('/profile'))
+        .catch((error) => console.log(error));
     }
   }
 }
-
