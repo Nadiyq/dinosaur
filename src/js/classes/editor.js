@@ -111,7 +111,9 @@ class Editor {
     this.file = this.fileInput.files[0];
     this._initEditor();
   }
+  _onFilterClick(){
 
+  }
   _onFilterChange() {
     // TODO
   }
