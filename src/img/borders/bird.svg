@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="230px" height="315px" viewBox="0 0 230 315" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>bird</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images" transform="translate(-292.000000, -259.000000)">
+            <g id="bird" transform="translate(292.000000, 259.000000)">
+                <polygon id="Path-8-Copy" fill="#5A4A9D" points="104 58 0 39 86 130"></polygon>
+                <polygon id="Path-11" fill="#8C7AD8" points="212 106 230 146 197 136"></polygon>
+                <polygon id="Path-8" fill="#6353AA" points="112 23 12 0 88 119"></polygon>
+                <polygon id="Path-9" fill="#7E6DCA" points="88 122 23 315 100 199"></polygon>
+                <polygon id="Path-10" fill="#7F6DC9" points="169 109 213 106 195 149"></polygon>
+                <path d="M196,147 L187,165 C187,165 100,200 98,200 C96,200 196,147 196,147 Z" id="Path-12" fill="#6353AA"></path>
+                <polygon id="Path-7" fill="#7564BE" points="111 22 86 124 98 201 196 148"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

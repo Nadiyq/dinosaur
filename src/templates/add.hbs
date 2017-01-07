@@ -1,16 +1,16 @@
 {{> header}}
 <div class="container-fluid">
 
-  <div id="editor" class="editor">
+  <div id="editor" class="editor ">
 
-    <div class="editor__borders">
+    <div class="editor__borders ">
       <div class="editor__borders-track">
         {{#each borders}}
         <button
-          class="editor__borders-item"
+          class="editor__borders-item "
           data-filter="{{ this }}"
-          data-imagePath = 'img/borders/{{ this }}.png'
-          style="background-image:url('img/borders/{{ this }}.png')">
+          data-imagePath = 'img/borders/{{ this }}'
+          style="background-image:url('img/borders/{{ this }}')">
           <span>{{ decamelize this }}</span>
         </button>
         {{/each}}

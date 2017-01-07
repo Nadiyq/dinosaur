@@ -1,9 +1,9 @@
 {{> header}}
 <div class="container-fluid">
-
   {{#with profile}}
   <div class="profile profile--show">
-    <div class="profile__pic"{{#if photoURL}} style="background-image: url('{{ photoURL }}')"{{/if}}></div>
+    <div class="profile__pic"{{#if photoURL}} style="background-image: url('{{ photoURL }}')"{{/if}}>
+    </div>
 
     <p class="profile__name">
       {{#if displayName}}{{ displayName }}{{else}}Unnamed{{/if}}

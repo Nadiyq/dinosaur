@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="146px" height="245px" viewBox="0 0 146 245" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>vintage</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M58.9379235,111.334171 C58.0964798,112.075091 57.3926439,112.920726 56.9148823,113.818531 L52.1869547,122.703208 C50.6289182,125.631056 52.0573036,128 55.3743588,128 L82.6259937,128 C85.9487498,128 87.3700983,125.628546 85.8133978,122.703208 L81.0854703,113.818531 C80.6065447,112.918538 79.9022512,112.071356 79.0602825,111.329557 C98.2385157,98.0784832 138.114015,67.386161 137.999755,41.3362116 C137.915575,22.6915375 123.062688,0 100.117508,0 C89.5922853,0 76.315352,6.82393425 68.9944778,13.2415349 C61.6722236,6.82393425 48.3966703,0 37.8714473,0 C14.9248881,0 0.0816603105,22.694283 0.000240597018,41.3362116 C-0.112985428,67.3864118 39.7659585,98.0849429 58.9379235,111.334171 Z" id="path-1"></path>
+        <mask id="mask-3" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-4" y="-4" width="146" height="136">
+            <rect x="-4" y="-4" width="146" height="136" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images" transform="translate(-265.000000, -8.000000)">
+            <g id="vintage" transform="translate(269.000000, 12.000000)">
+                <g id="Rectangle">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Combined-Shape">
+                        <use fill="#F5511E" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <use stroke="#FFEFDE" mask="url(#mask-3)" stroke-width="8" xlink:href="#path-1"></use>
+                    </g>
+                    <rect fill="#F96B29" mask="url(#mask-2)" x="69" y="-9.27536232" width="78.3243243" height="148.405797"></rect>
+                    <ellipse id="Oval" fill="#FC9536" mask="url(#mask-2)" cx="104.432432" cy="34.3188406" rx="12.1216216" ry="12.057971"></ellipse>
+                </g>
+                <rect id="Rectangle" fill="#FFEFDE" x="67" y="132" width="4" height="109"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

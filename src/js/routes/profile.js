@@ -3,3 +3,4 @@ function profile(ctx) {
     profile: ctx.user
   });
 }
+

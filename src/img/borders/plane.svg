@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="404px" height="229px" viewBox="0 0 404 229" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>plane</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images" transform="translate(-358.000000, -76.000000)">
+            <g id="plane" transform="translate(358.000000, 76.000000)">
+                <polygon id="Path-4" fill="#1E455B" points="124 229 190 177.5 118 127"></polygon>
+                <polygon id="Path-2" fill="#FDD469" points="-2.84217094e-14 63 403 1 242 214 117 127 383 8 76 110"></polygon>
+                <polygon id="Path-3" fill="#EFC760" points="404 0 76 109 125 229 118 128"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

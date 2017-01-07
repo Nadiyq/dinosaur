@@ -128,10 +128,9 @@ class Editor {
     const borderImage = new Image();
     borderImage.src = e.target.dataset.imagepath;
     borderImage.onload = function(){
-      canvasContext.drawImage(borderImage, 0,0, canvasBorder.width, canvasBorder.height);
+      canvasContext.drawImage(borderImage, canvasBorder.width-borderImage.width,0); 
     }
   }
-
   _onFilterChange() {
     // TODO
   }
@@ -228,6 +227,10 @@ Editor.FILTERS = [
 ];
 
 Editor.BORDERS = [
-  'vintage',
-  'modern',
+  'vintage.svg',
+  'plane.svg',
+  'bird.svg',
+  'bow.svg',
+  'flowers.svg',
+  'banan.gif'
 ];

@@ -16,6 +16,7 @@
   &
     max-width 600px
     margin auto
+    margin-top: 16px
 
   &__canvas-container
     display none
@@ -52,8 +53,9 @@
     height 400px
     width 100%
     margin 0
-    border 8px dashed
-    color #CCC
+    background #fff
+    border 2px dashed
+    color #eee
     font-size 26px
     cursor pointer
 
@@ -85,7 +87,7 @@
     padding-bottom 16px
     white-space nowrap
     font-size 0
-    margin 24px 0 0
+    margin 4px 0 0
 
     &:before
     &:after
@@ -112,7 +114,7 @@
         height 2px
         background alpha(#ccc, 0.2)
       +scrollbar-thumb()
-        background #ccc
+        background #F7CD5E
 
     &-item
       display inline-block
@@ -124,9 +126,11 @@
       background white no-repeat center
       background-size cover
       outline none
-      border 1px solid #ccc
+      border 1px solid #eee
+      border-radius 4px
+      margin 8px
       color white
-      font-size 13px
+      font-size 14px
       overflow hidden
 
       > *
@@ -142,7 +146,8 @@
       &:before
         overlay()
         z-index 0
-        background black
+        background #7564BE
+        border-radius 4px
         opacity 0.8
         transition all 0.3s ease
         opacity 0
@@ -166,7 +171,7 @@
 
         &:before
           transition-delay 0.1s
-          opacity 0.7
+          opacity 0.8
 
       &.is-active
         &:after
@@ -216,3 +221,6 @@
 
     {$this}__progress
       display block
+  &__borders
+    &-item
+      background-size 60%
