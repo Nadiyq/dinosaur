@@ -13,12 +13,10 @@ class Editor {
     this.file             = null;
     this.filter           = null;
     this._processing      = false;
-
     this.resetFilter       = this.resetFilter.bind(this);
     this.save              = this.save.bind(this);
     this._onFileChange     = this._onFileChange.bind(this);
     this._onFilterClick    = this._onFilterClick.bind(this);
-    this._onBorderClick    = this._onBorderClick.bind(this);
     this._onUploadProgress = this._onUploadProgress.bind(this);
 
     this.triggerReset.style.display = 'none';
@@ -118,19 +116,6 @@ class Editor {
   _onFilterClick(){
   }
 
-  _onBorderClick(e){
-    if(this.borderImagePath && this.borderImagePath != e.target.dataset.imagepath){
-      this.resetFilter();
-    }
-    this.borderImagePath = e.target.dataset.imagepath;
-    const canvasBorder = this.root.getElementsByTagName('canvas')[0];
-    const canvasContext = canvasBorder.getContext('2d');
-    const borderImage = new Image();
-    borderImage.src = e.target.dataset.imagepath;
-    borderImage.onload = function(){
-      canvasContext.drawImage(borderImage, canvasBorder.width-borderImage.width,0); 
-    }
-  }
   _onFilterChange() {
     // TODO
   }

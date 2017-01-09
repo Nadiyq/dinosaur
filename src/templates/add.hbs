@@ -1,23 +1,22 @@
 {{> header}}
 <div class="container-fluid">
+  <div id="editor" class="editor">
 
-  <div id="editor" class="editor ">
-
-    <div class="editor__borders ">
+    <div class="editor__borders">
       <div class="editor__borders-track">
         {{#each borders}}
-        <button
-          class="editor__borders-item "
+        <div
+          class="editor__borders-item draggable"
           data-filter="{{ this }}"
           data-imagePath = 'img/borders/{{ this }}'
           style="background-image:url('img/borders/{{ this }}')">
           <span>{{ decamelize this }}</span>
-        </button>
+        </div>
         {{/each}}
       </div>
     </div>
 
-    <div class="editor__canvas-container">
+    <div class="editor__canvas-container droppable">
       <i class="fa fa-spinner fa-4x fa-spin"></i>
     </div>
 
@@ -56,7 +55,5 @@
     <div class="editor__progress progress">
       <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 40%"></div>
     </div>
-
   </div>
-
 </div>
