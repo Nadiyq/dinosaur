@@ -4,7 +4,6 @@ class Editor {
     this.props            = Object.assign({}, Editor.defaults, props);
     this.canvasContainer  = qs(this.props.canvasContainer, this.root);
     this.filtersContainer = qs(this.props.filtersContainer, this.root);
-    this.bordersContainer = qs(this.props.bordersContainer, this.root);
     this.fileInput        = qs(this.props.fileInput, this.root);
     this.triggerReset     = qs(this.props.triggerReset, this.root);
     this.triggerUpload    = qs(this.props.triggerUpload, this.root);
@@ -13,6 +12,7 @@ class Editor {
     this.file             = null;
     this.filter           = null;
     this._processing      = false;
+
     this.resetFilter       = this.resetFilter.bind(this);
     this.save              = this.save.bind(this);
     this._onFileChange     = this._onFileChange.bind(this);
@@ -48,15 +48,35 @@ class Editor {
   }
 
   resetFilter() {
-    // if (!this.filter) return;
+    if (!this.filter) return;
     this.filter = null;
     this.caman && this.caman.revert();
     this._highlightActiveFilter();
     this.triggerReset.style.display = 'none';
   }
 
+  // get caption and add it to the post as first comment
+  _getComments() {
+    const caption = this.caption.value.trim();
+
+    if (!caption) return {};
+
+    const { uid, username } = this.props.currentUser;
+    const commentId = generateID('comment-');
+
+    return {
+      [commentId]: {
+        id: commentId,
+        value: caption,
+        author: username,
+        authorId: uid,
+        created: moment().toJSON()
+      }
+    };
+  }
+
   save() {
-    const id          = generateID('', 12);
+    const id          = generateID('post-');
     const user        = firebase.auth().currentUser;
     const dbPath      = `/posts/${id}`;
     const storagePath = `/pictures/${user.uid}/${id}.jpg`;
@@ -79,15 +99,34 @@ class Editor {
     uploadTask
       // create entry in firebase database after successfull upload
       .then(snapshot => {
+        console.log(snapshot);
         const { timeCreated, downloadURLs, fullPath } = snapshot.metadata;
+        var decorations = new Array();
+        for(var i=0; i<this.canvasContainer.childNodes.length; i++){
+          if($(this.canvasContainer.childNodes[i]).hasClass('canvas-item')){
+            decorations.push({
+                imgPath: this.canvasContainer.childNodes[i].src,
+                width: this.canvasContainer.childNodes[i].width,
+                height: this.canvasContainer.childNodes[i].height,
+                rotation: this.canvasContainer.childNodes[i].style.transform,
+                x: this.canvasContainer.childNodes[i].x,
+                y: this.canvasContainer.childNodes[i].y
+            })
+          }
+        }
         return dbRef.set({
           id,
           author: user.uid,
           created: timeCreated,
           url: downloadURLs[0],
-          caption: this.caption.value.trim(),
           filterName: this.filter,
-          storagePath: fullPath
+          storagePath: fullPath,
+          dimensions: {
+            width: this.caman.width,
+            height: this.caman.height
+          },
+          comments: this._getComments(),
+          decorations: decorations
         });
       })
       // hide spinner and progress bar
@@ -104,8 +143,15 @@ class Editor {
   }
 
   _bindEvents() {
+    this.triggerReset.addEventListener('click', this.resetFilter);
+    this.triggerUpload.addEventListener('click', this.save);
     this.fileInput.addEventListener('change', this._onFileChange);
-    this.bordersContainer.addEventListener('click', this._onBorderClick);
+    delegate(
+      this.filtersContainer,
+      'click',
+      '[data-filter]',
+      this._onFilterClick
+    );
   }
 
   _onFileChange(e) {
@@ -113,11 +159,11 @@ class Editor {
     this._initEditor();
   }
 
-  _onFilterClick(){
-  }
-
-  _onFilterChange() {
-    // TODO
+  _onFilterClick(e) {
+    const target = e.delegateTarget;
+    const { filter } = target.dataset;
+    if (!filter) return;
+    this.applyFilter(filter);
   }
 
   _onUploadProgress(snapshot) {
@@ -126,7 +172,12 @@ class Editor {
   }
 
   _highlightActiveFilter() {
-    // TODO
+    const { activeClass } = this.props;
+    const prevActive = qs(`.${activeClass}`, this.filtersContainer);
+    const nextActive = qs(`[data-filter="${this.filter}"]`, this.filtersContainer);
+    prevActive && prevActive.classList.remove(activeClass);
+    nextActive && nextActive.classList.add(activeClass);
+    this.triggerReset.style.display = '';
   }
 
   _toggleBusyState() {
@@ -146,7 +197,7 @@ class Editor {
   _initEditor() {
     const { hasImageClass, imageMaxSize } = this.props;
     const canvas = document.createElement('canvas');
-    const url = URL.createObjectURL(this.file);
+    const url    = URL.createObjectURL(this.file);
 
     if (this.canvas) {
       this.canvas.parentNode.replaceChild(canvas, this.canvas);
@@ -158,10 +209,8 @@ class Editor {
     this._toggleBusyState();
     this.caman = Caman(this.canvas, url, (caman) => {
       const { originalWidth, originalHeight } = caman;
-      const ratio = originalWidth / originalHeight;
-      const width = originalWidth > imageMaxSize
-        ? imageMaxSize
-        : originalWidth;
+      const ratio  = originalWidth / originalHeight;
+      const width  = originalWidth > imageMaxSize ? imageMaxSize : originalWidth;
       const height = Math.round(width / ratio);
 
       caman.resize({ width, height }).render();
@@ -173,13 +222,13 @@ class Editor {
 }
 
 Editor.defaults = {
+  currentUser: {},
   activeClass: 'is-active',
   busyClass: 'is-busy',
   hasImageClass: 'has-image',
   uploadingClass: 'is-uploading',
   filtersContainer: '.editor__presets',
   canvasContainer: '.editor__canvas-container',
-  bordersContainer: '.editor__borders',
   triggerReset: '.editor__reset',
   triggerUpload: '.editor__upload',
   fileInput: 'input[type="file"]',
@@ -217,5 +266,5 @@ Editor.BORDERS = [
   'bird.svg',
   'bow.svg',
   'flowers.svg',
-  'banan.gif'
+  'pokemon.gif'
 ];

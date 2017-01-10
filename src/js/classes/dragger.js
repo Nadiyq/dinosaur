@@ -31,7 +31,7 @@ function dragAndResize() {
                 .bind('mousewheel', (event) => {
                   var delta = event.originalEvent.wheelDelta;
                   $(event.currentTarget).css({
-                     '-moz-transform':'rotate('+delta+'deg)',
+                    '-moz-transform':'rotate('+delta+'deg)',
                     '-webkit-transform':'rotate('+delta+'deg)',
                     '-o-transform':'rotate('+delta+'deg)',
                     '-ms-transform':'rotate('+delta+'deg)',
