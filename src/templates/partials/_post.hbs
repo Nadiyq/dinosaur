@@ -13,8 +13,12 @@
   <span class="post__time">{{ formatDate created }}</span>
 </header>
 
-<div class="post__content">
+<div class="post__content" style = "position: relative">
+  {{#each (sortBy decorations 'created')}}
+  <img src = "{{ this.imgPath }}" width = "{{ this.width }}" height = "{{ this.height }}"  style = "position: absolute; transform: {{ this.rotation }}; left: {{ this.left }}; top: {{ this.top }}" >
+  {{/each}}
   <img src="{{ url }}" alt="{{ name }}">
+
 </div>
 
 <footer class="post__footer">

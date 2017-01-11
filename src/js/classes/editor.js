@@ -109,8 +109,8 @@ class Editor {
                 width: this.canvasContainer.childNodes[i].width,
                 height: this.canvasContainer.childNodes[i].height,
                 rotation: this.canvasContainer.childNodes[i].style.transform,
-                x: this.canvasContainer.childNodes[i].x,
-                y: this.canvasContainer.childNodes[i].y
+                left: this.canvasContainer.childNodes[i].style.left,
+                top: this.canvasContainer.childNodes[i].style.top
             })
           }
         }
