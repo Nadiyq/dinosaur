@@ -266,5 +266,11 @@ Editor.BORDERS = [
   'bird.svg',
   'bow.svg',
   'flowers.svg',
-  'pokemon.gif'
+  'pokemon.gif',
+  'ball.gif',
+  'cloud.gif',
+  'squirrel.gif',
+  'woman.gif',
+  'fire.gif',
+  'slow_spinner.gif'
 ];

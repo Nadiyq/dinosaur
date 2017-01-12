@@ -29,7 +29,6 @@ class Post {
         isOwner: this.data.author === this.currentUser.uid
       })
     );
-    console.log(this);
     console.timeEnd('render');
   }
 
